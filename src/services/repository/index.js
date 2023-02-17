@@ -7,8 +7,13 @@ const repositoryApi = baseAPI.injectEndpoints({
                 url: `search/repositories`,
                 params
             }),
+        }),
+        get: build.query({
+            query: ({ owner, repo }) => ({
+                url: `repos/${owner}/${repo}`
+            }),
         })
     })
 })
 
-export const { useGetAllQuery } = repositoryApi
+export const { useGetAllQuery, useGetQuery } = repositoryApi
