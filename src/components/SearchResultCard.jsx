@@ -7,7 +7,7 @@ export default function SearchResultCard({ repo }) {
     const MAX_DESCRIPTION_LENGTH = 100;
 
     const description = repo.description !== null ? (repo.description.length > MAX_DESCRIPTION_LENGTH
-        ? repo.description.substring(0, MAX_DESCRIPTION_LENGTH - 3) + "..."
+        ? repo.description.substring(0, MAX_DESCRIPTION_LENGTH) + "..."
         : repo.description) : ''
 
     return (
