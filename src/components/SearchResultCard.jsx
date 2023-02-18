@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom";
 
 export default function SearchResultCard({ repo }) {
+    const navigate = useNavigate()
     const MAX_DESCRIPTION_LENGTH = 100;
 
     const description = repo.description !== null ? (repo.description.length > MAX_DESCRIPTION_LENGTH
@@ -9,7 +11,7 @@ export default function SearchResultCard({ repo }) {
         : repo.description) : ''
 
     return (
-        <div className="bg-white p-6 rounded-md shadow-md min-w-min">
+        <div className="cursor-pointer bg-white p-6 rounded-md shadow-md min-w-min" onClick={() => { navigate(`/repo/${repo.full_name}`) }}>
             <div className="text-lg font-medium text-gray-900">{repo.name}</div>
             <div className="text-sm font-medium text-gray-500">
                 <span className="mr-4">

@@ -1,6 +1,8 @@
 import { useGetQuery } from "../../services/repository";
+import { useParams } from "react-router-dom";
 export default function RepositoryDetail() {
-    const { data: repo, isLoading, error } = useGetQuery({ owner: 'facebook', repo: 'react' })
+    const params = useParams()
+    const { data: repo, isLoading, error } = useGetQuery(params)
 
     return (
         repo && <div className="container mx-auto p-4">
