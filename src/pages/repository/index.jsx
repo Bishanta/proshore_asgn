@@ -23,7 +23,7 @@ export default function Repository() {
             ...pevParams,
             page: 1
         }))
-    }, [params.q])
+    }, [params.q, params.per_page])
 
     const [debouncedParams] = useDebounce(params, 300);
 
