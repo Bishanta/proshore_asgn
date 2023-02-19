@@ -1,3 +1,4 @@
+import React from 'react'
 import { useMemo } from "react";
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +19,7 @@ export default function Pagination({ setParams, params, total }) {
         >
             <FontAwesomeIcon icon={faAngleLeft} />
         </button>
-        {paginationRange.map((pageNumber, index) => {
+        {paginationRange && paginationRange.map((pageNumber, index) => {
             if (pageNumber === DOTS) {
                 return (
                     <span key={index} className="w-8 h-8 flex items-center text-gray-500 font-medium">

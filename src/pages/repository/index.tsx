@@ -1,3 +1,4 @@
+import React from 'react'
 import PageLayout from "../../layouts/PageLayout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -5,18 +6,24 @@ import { useGetAllQuery } from "../../services/repository";
 import { useState, useEffect } from "react";
 import SearchResultCard from "../../components/SearchResultCard"
 import Pagination from "../../components/Pagination";
-import Select from 'react-select'
+import Select, { ActionMeta } from 'react-select'
 import { useDebounce } from 'use-debounce';
 import SearchImage from '../../assets/Curious-rafiki.png'
 import ErrorImage from '../../assets/error.png'
-import LoadingGif from '../../assets/loading.gif'
+import LoadingGif from '../../assets/Loading.gif'
+import { QueryParamType } from '../../types';
 
 export default function Repository() {
-    const [params, setParams] = useState({
+    const [params, setParams] = useState<QueryParamType>({
         q: '',
         per_page: 10,
         page: 1
     })
+
+    interface Option {
+        label: string
+        value: number
+    }
 
     useEffect(() => {
         setParams(pevParams => ({
@@ -33,7 +40,7 @@ export default function Repository() {
         { value: 50, label: '50' }
     ]
 
-    const { data: repositoryData, isLoading, isFetching, error } = useGetAllQuery(debouncedParams, { skip: !debouncedParams.q.length > 0 })
+    const { data: repositoryData, isLoading, isFetching, error } = useGetAllQuery(debouncedParams, { skip: !(debouncedParams.q.length > 0) })
     return <PageLayout>
         <div className="relative flex items-center">
             <label className="relative flex-1">
@@ -54,8 +61,8 @@ export default function Repository() {
                 <Select
                     options={PAGE_SIZE_OPTIONS}
                     value={PAGE_SIZE_OPTIONS.find(option => option.value === params.per_page)}
-                    onChange={(event) => {
-                        setParams({ ...params, per_page: event.value })
+                    onChange={(event: Option | null, actionMeta: ActionMeta<Option>) => {
+                        setParams({ ...params, per_page: event?.value || 10 })
                     }}
                     className="w-30"
                 />

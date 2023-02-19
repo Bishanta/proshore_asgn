@@ -1,7 +1,8 @@
+import React from 'react'
 import { useGetQuery } from "../../services/repository";
 import { useParams } from "react-router-dom";
 import PageLayout from "../../layouts/PageLayout";
-import LoadingGif from '../../assets/loading.gif'
+import LoadingGif from '../../assets/Loading.gif';
 
 export default function RepositoryDetail() {
     const params = useParams()
