@@ -3,9 +3,6 @@ This is a simple React project created using Vite. It includes some basic setup 
 
 # Getting started
 To get started, first clone this repository:
-```
-git clone https://github.com/your-username/my-react-project.git
-```
 
 Next, install the dependencies using `npm`:
 ```
@@ -16,3 +13,7 @@ npm install
 ```
 npm run dev
 ```
+
+This project was built using react, typescript, and redux-toolkit.
+
+
